@@ -10,18 +10,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet"></head>
 <body>
-    <h1>ZzZystème cCcolaire</h1>
-    <div class="index-planet">
-        <ul>
-        </ul>
+    <h1>Système Solaire</h1>
+    <button id="toggle-planet-window" class="toggle-button">Liste des planètes</button>
+    <div id="planet-window" class="planet-window">
+        <div id="planet-list" class="planet-content">
+            <h2>Planètes</h2>
+            <ul id="planet-buttons">
+                <!-- Les boutons de planètes seront ajoutés ici dynamiquement -->
+            </ul>
+        </div>
+        <div id="planet-info" class="planet-content hidden">
+            <button id="back-button" class="back-button">← Planètes</button>
+            <div id="info-content"></div>
+        </div>
     </div>
-    <div id="info-planet" class="invisible">
+    <div id="slider-container">
+        <div class="slider-group">
+            <label for="zoom-slider">zoom</label>
+            <div id="zoom-slider"></div>
+        </div>
+        <!-- <div class="slider-group">
+            <label for="translate-slider">translate</label>
+            <div id="translate-slider"></div>
+        </div> -->
+        <div class="slider-group">
+            <label for="orbit-speed-slider">vitesse d'orbite</label>
+            <div id="orbit-speed-slider"></div>
+        </div>
     </div>
-    <ul id="slider-box">
-        <li>zoom</li>
-        <li>translate</li>
-        <li>orbit speed</li>
-    </ul>
     <script src="js/script.js" defer></script>
 </body>
 </html>

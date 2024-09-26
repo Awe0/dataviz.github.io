@@ -1,13 +1,14 @@
 body {
     background:black;
     color: white;
-    /* background-image:url("background.png"); */
     font-family: "Fira Code", monospace;
-}h1 {
+    overflow: hidden;
+}
+
+h1 {
     font-size: 1.8em;
     text-align: center;
     width: 100vw;
-    position: absolute;
     font-weight: 100;
     padding-bottom: 8px;
     color: lime;
@@ -31,31 +32,112 @@ h1:after{
 }
 .visible{
     display: block;
-}main {
+}
+
+main {
     position: absolute;
     z-index: -1;
-}.index-planet {
+}
+
+.planet-window {
+    position: fixed;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: 1px solid lime;
+    padding: 20px;
+    min-width: 200px;
+    max-width: 80%;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: white;
+    z-index: 1000;
+}
+
+.planet-content {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.back-button {
+    background-color: transparent;
+    border: 1px solid lime;
+    color: lime;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    background-color: lime;
+    color: black;
+}
+
+#planet-buttons {
+    list-style-type: none;
+    padding: 0;
+}
+
+#planet-buttons li {
+    margin-bottom: 10px;
+}
+
+#info-content p {
+    margin: 15px 0;
+
+}
+
+.titre {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.index-planet {
     position: absolute;
     margin : 0;
     font-size: 2.2em;
     line-height: 1.7em;
     margin-top: 10vh;
-}.planet-button{
+}
+
+.planet-button{
     font-family: "Fira Code", monospace;
+    font-size: 1.2em;
     z-index: 1;
-    background-color:transparent; /* Green */
+    background-color: rgba(0, 0, 0, 0.8);
     border: 1.5px solid grey;
     color: white;
     padding: 5px 15px;
+    margin-bottom: 20px;
     text-align: center;
     text-decoration: none;
+    border-radius: 20px;
 }
+
 .planet-button:hover{
     color: lime;
     border: 1.5px solid lime;
-    padding: 7px 17px;
+    /* padding: 7px 17px; */
     cursor: pointer; /* Cursor on hover */
 }
+
+.toggle-button {
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    color: lime;
+    border: 1.5px solid lime;
+    background: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
 #info-planet {
     position: absolute;
     color: lime;
@@ -67,50 +149,132 @@ h1:after{
     margin-top: 20vh;
 }
 
-.slider{
-    -webkit-appearance: none;  /* Override default CSS styles */
-    appearance: none;
-    width: 100%; /* Full-width */
-    height: 25px; /* Specified height */
-    background: white;
-    outline: none; /* Remove outline */
-    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
-    height: 2px;
+#slider-container {
+    position: fixed;
+    bottom: 2vh;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.slider:hover{
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 2vw;
+    width: 25%;
+    max-width: 200px;
+}
+
+.slider-group label {
+    color: lime;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
     background: lime;
 }
 
-.slider::-moz-range-thumb {
-    width: 5px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
-    background: lime; /* Green background */
-    cursor:ew-resize;
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 2vw;
+    max-width: 10px;
+    height: 2vh;
+    max-height: 20px;
+    background: lime;
+    cursor: ew-resize;
     border: none;
     border-radius: 0;
 }
 
-#info-planet .titre{
-    color: white;
-    margin-right: 10px;
+.slider::-moz-range-thumb {
+    width: 2vw;
+    max-width: 10px;
+    height: 2vh;
+    max-height: 20px;
+    background: lime;
+    cursor: ew-resize;
+    border: none;
+    border-radius: 0;
 }
 
-#info-planet .titre:after{
-    content: " ▶";
-    color: grey;
+
+@media only screen and (max-width: 768px) {
+    body{margin: 0;
+    width: 100vw;}
+    h1:before{
+        content: '_=[' ;
+        color: white;
+    }
     
-}
+    h1:after{
+        content: ']=_';
+        color: white;
+    }
 
-#slider-box {
-    position: absolute;
-    top: 82vh;
-    left: 28vw;
-    color: lime;
-}
+    h1 {
+        font-size: 1.7em;
+        text-align: center;
+        width: 100vw;
+        position: static;
+        font-weight: 100;
+        padding-bottom: 8px;
+        color: lime;
+    }
 
-#slider-box li{
-    display: inline;
-    margin-right: 13.5vw;
+    .slider::-webkit-slider-thumb,
+    .slider::-moz-range-thumb {
+        width: 5vw; /* Slightly larger on smaller screens for touch-friendliness */
+        max-width: 30px;
+        height: 8vh;
+        max-height: 50px;
+    }
+
+    #slider-container {
+        flex-direction: column;
+        align-items: right;
+        bottom: 1vh;
+    }
+
+    .slider-group {
+        width: 50%;
+        max-width: none;
+        margin: 10px 0;
+    }
+
+    .planet-window {
+        top: 8vh;
+        left: 5vw;
+        transform: none;
+        width: 80vw;
+        height: 70vh;
+        max-width: none;
+        max-height: none;
+    }
+
+    .toggle-button {
+        display: block;
+        bottom: 30px;
+    }
+}
+@media (min-width: 769px) {
+    .toggle-button {
+        display: none;
+    }
 }
